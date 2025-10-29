@@ -1,61 +1,62 @@
-// --- Ambil elemen
+// --- BAGIAN PILIH ELEMEN DARI HTML ---
+// Pastikan semua id ini ada di file index.html Anda
 const questionContainer = document.getElementById("questionContainer");
-const heartLoader       = document.getElementById("heartLoader");
-const resultContainer   = document.getElementById("resultContainer");
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
 
-const yesBtn            = document.getElementById("yesBtn");
-const noBtn             = document.getElementById("noBtn");
+const heartLoader = document.getElementById("heartLoader");
+const resultContainer = document.getElementById("resultContainer");
+// Ini akan memilih ID 'gifResult' yang benar (dari resultContainer)
+// setelah index.html diperbaiki
+const gifResult = document.getElementById("gifResult"); 
 
-// Media hasil (bisa <img> atau <video>)
-const resultMedia       = document.getElementById("resultMedia");
 
-// --- Fungsi tombol No kabur
-function moveNoButton(){
-  // Pastikan absolute & terukur
-  noBtn.style.position = "absolute";
+// --- INI BAGIAN YANG DIPERBAIKI ---
 
-  // Ukuran tombol
-  const btnW = noBtn.offsetWidth;
-  const btnH = noBtn.offsetHeight;
+// 1. Kita buat satu fungsi khusus untuk memindahkan tombol
+const moveNoButton = () => {
+  noBtn.style.position = 'absolute'; // Ini sudah benar
 
-  // Ukuran kontainer (batas gerak)
-  const boxW = questionContainer.clientWidth;
-  const boxH = questionContainer.clientHeight;
+  // --- TAMBAHKAN DUA BARIS DI BAWAH INI ---
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
+  // ----------------------------------------
 
-  // Biar gak mentok ke tepi
-  const padding = 6;
+  // Ambil ukuran kontainer
+  const containerWidth = questionContainer.offsetWidth;
+  const containerHeight = questionContainer.offsetHeight;
+  
+  // Sekarang kode di bawah ini akan berfungsi
+  const newX = Math.floor(Math.random() * (containerWidth - btnWidth));
+  const newY = Math.floor(Math.random() * (containerHeight - btnHeight));
+  
+  noBtn.style.left = `${newX}px`;
+  noBtn.style.top = `${newY}px`;
+};
 
-  // Posisi acak aman
-  const maxX = Math.max(0, boxW - btnW - padding);
-  const maxY = Math.max(0, boxH - btnH - padding);
+// 2. Pasang fungsi itu ke KEDUA event:
+noBtn.addEventListener("mouseover", moveNoButton); // Untuk desktop (komputer)
+noBtn.addEventListener("touchstart", moveNoButton); // Untuk mobile (HP)
 
-  const x = Math.floor(Math.random() * (maxX + 1));
-  const y = Math.floor(Math.random() * (maxY + 1));
+// --- BATAS PERBAIKAN ---
 
-  noBtn.style.left = `${x}px`;
-  noBtn.style.top  = `${y}px`;
-}
 
-// Desktop & Mobile
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNoButton(); }, {passive:false});
-
-// --- Klik Yes -> loading -> hasil
+// --- KODE ASLI ANDA UNTUK TOMBOL "YES" ---
+// (Saya tambahkan sedikit perbaikan untuk menyembunyikan pertanyaan)
 yesBtn.addEventListener("click", () => {
-  // Step 1: sembunyikan pertanyaan
+  // Sembunyikan kontainer pertanyaan
   questionContainer.style.display = "none";
+  // Tampilkan loader
+  heartLoader.style.display = "block"; // 'block' lebih baik dari 'inherit'
 
-  // Step 2: tampilkan loader
-  heartLoader.style.display = "block";
-
-  // Step 3: setelah 3 detik, tampilkan hasil
-  setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     heartLoader.style.display = "none";
-    resultContainer.style.display = "block";
-
-    // Kalau <video>, play. Kalau <img>, aman (nggak ada .play())
-    if (resultMedia && typeof resultMedia.play === "function") {
-      resultMedia.play();
+    resultContainer.style.display = "block"; // 'block' lebih baik dari 'inherit'
+    
+    // Cek jika gifResult ada dan punya fungsi .play() (jika itu <video>)
+    // Ini tidak akan error, tapi .play() tidak akan berjalan karena gifResult adalah <img>
+    if (gifResult && typeof gifResult.play === 'function') {
+      gifResult.play();
     }
   }, 3000);
 });

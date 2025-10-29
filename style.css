@@ -1,48 +1,100 @@
-/* Layout dasar */
-body{
-  display:flex; justify-content:center; align-items:center;
-  min-height:100vh; overflow:hidden;
-  background:#fce4ec; font-family:Arial, sans-serif;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fce4ec; /* Latar belakang pink muda */
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Mencegah tombol keluar layar */
 }
 
-/* Kotak utama + batas area gerak tombol No */
-.container{
-  position:relative; /* penting agar No bergerak di dalam kotak ini */
-  width:90%; max-width:400px;
-  background:#fff; border-radius:20px; text-align:center;
-  padding:30px; box-shadow:0 4px 15px rgba(0,0,0,.1);
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Kita atur position relative agar tombol 'No' bergerak di dalam kontainer ini */
+    position: relative; 
+    width: 90%;
+    max-width: 400px;
 }
 
-.main-gif{ width:150px; height:150px; object-fit:cover; }
-
-h2{ color:#333; margin:15px 0 25px; }
-
-/* Tombol Yes/No */
-.button-group{
-  display:flex; justify-content:center; gap:15px; margin-top:20px;
-}
-button{
-  padding:12px 25px; border:none; border-radius:10px;
-  font-size:16px; font-weight:bold; cursor:pointer;
-  transition:all .3s ease;
-}
-#yesBtn{ background:#4CAF50; color:#fff; }
-#yesBtn:hover{ background:#45a049; }
-#noBtn{
-  background:#f44336; color:#fff;
-  transition:left .25s ease, top .25s ease, background .3s ease;
-  position:absolute; /* akan diatur posisinya lewat JS */
+.main-gif {
+    width: 150px;
+    height: 150px;
 }
 
-/* Hasil */
-#resultContainer h2{ color:#e91e63; }
-#resultMedia{ width:100%; max-width:300px; border-radius:10px; margin-top:20px; }
-
-/* Loader */
-#heartLoader{ text-align:center; }
-.loader{
-  border:8px solid #f3f3f3; border-top:8px solid #e91e63;
-  border-radius:50%; width:60px; height:60px; margin:20px auto;
-  animation:spin 1s linear infinite;
+h2 {
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 25px;
 }
-@keyframes spin{ 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+
+.button-group {
+    display: flex;         /* Membuat tombol sejajar */
+    justify-content: center; /* Menengahkan tombol */
+    gap: 15px;             /* Memberi jarak 15px antar tombol */
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#yesBtn {
+    background-color: #4CAF50; /* Hijau */
+    color: white;
+}
+
+#yesBtn:hover {
+    background-color: #45a049;
+}
+
+#noBtn {
+    background-color: #f44336; /* Merah */
+    color: white;
+    /* Ini adalah bagian PENTING agar JS bisa menggerakkannya */ 
+    transition: left 0.3s ease, top 0.3s ease; /* Transisi agar mulus */
+}
+
+#noBtn:hover {
+    background-color: #e53935;
+}
+
+/* Styling untuk hasil */
+#resultContainer h2 {
+    color: #e91e63; /* Pink */
+}
+
+#gifResult {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Styling untuk loader */
+#heartLoader {
+    text-align: center;
+}
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #e91e63; /* Pink */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Tanda } yang error di sini sudah dihapus */
