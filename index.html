@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LINK?</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TikTok ID?</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div class="container" id="questionContainer">
-        <img src="bubu-dudu-sseeyall.gif" alt="Bubu Dudu" class="main-gif" id="gifResult">
-        <h2>Do you want give me you Tiktok Id?</h2>
-        <div class="button-group">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
-        </div>
-    </div>
+  <!-- STEP 1: Pertanyaan -->
+  <div class="container" id="questionContainer">
+    <!-- ganti src sesuai aset kamu (gif / img / video) -->
+    <img src="bubu-dudu-sseeyall.gif" alt="Bubu Dudu" class="main-gif" id="gifResult">
+    <h2>Do you want give me your TikTok ID?</h2>
 
-    <div class="container" id="heartLoader" style="display: none;">
-        <div class="loader"></div>
-        <p>Loading...</p>
+    <div class="button-group">
+      <button id="yesBtn" type="button">Yes</button>
+      <button id="noBtn" type="button">No</button>
     </div>
+  </div>
 
-    <div class="container" id="resultContainer" style="display: none;">
-            <img src="bubu-dudu-sseeyall.gif" alt="Bubu Dudu" class="main-gif" id="gifResult">
-            <h2>Yippee!</h2>
-    </div>
+  <!-- STEP 2: Loader -->
+  <div class="container" id="heartLoader" style="display:none">
+    <div class="loader"></div>
+    <p>Loading...</p>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- STEP 3: Hasil -->
+  <div class="container" id="resultContainer" style="display:none">
+    <!-- Boleh pakai img/gif atau video -->
+    <img src="bubu-dudu-sseeyall.gif" alt="Bubu Dudu" class="main-gif" id="resultMedia">
+    <h2>Yippee!</h2>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
