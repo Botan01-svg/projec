@@ -13,14 +13,20 @@ const gifResult = document.getElementById("gifResult");
 // --- INI BAGIAN YANG DIPERBAIKI ---
 
 // 1. Kita buat satu fungsi khusus untuk memindahkan tombol
+// 1. Kita buat satu fungsi khusus untuk memindahkan tombol
 const moveNoButton = () => {
-  noBtn.style.position = 'absolute'; // <-- TAMBAKAN BARIS INI
+  noBtn.style.position = 'absolute'; // Ini sudah benar
+
+  // --- TAMBAHKAN DUA BARIS DI BAWAH INI ---
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
+  // ----------------------------------------
 
   // Ambil ukuran kontainer
   const containerWidth = questionContainer.offsetWidth;
   const containerHeight = questionContainer.offsetHeight;
-  // ...dst
   
+  // Sekarang kode di bawah ini akan berfungsi
   const newX = Math.floor(Math.random() * (containerWidth - btnWidth));
   const newY = Math.floor(Math.random() * (containerHeight - btnHeight));
   
